@@ -2,20 +2,21 @@ package numbers;
 
 public class ArmstrongNumbers {
 
-
-    public boolean isArmstrongNumber(int number){
-        if(number<0){
-            throw new IllegalArgumentException("Number can't be negative: "+number);
+    public boolean isArmstrongNumber(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Number can't be negative: " + number);
         }
-        int sum = 0;
-        int numberOfDigits = Integer.toString(number).length();
-        int original = number;
-        while(number !=0){
-            int digit = number%10;
-            number = number/10;
-            sum+=Math.pow(digit,numberOfDigits);
-        }
-        return sum == original;
+        int sum = getSum(number);
+        return number == sum;
     }
 
+    private int getSum(int number) {
+        int n = String.valueOf(number).length();
+        String[] nubers = String.valueOf(number).split("");
+        int sum = 0;
+        for (String num: nubers) {
+            sum += Math.pow(Integer.parseInt(num), n);
+        }
+        return sum;
+    }
 }

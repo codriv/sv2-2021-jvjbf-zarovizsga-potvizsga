@@ -19,9 +19,6 @@ public abstract class Article implements Comparable<Article>{
         return author;
     }
 
-    public abstract int getImportance();
-
-
     public Header getHeader() {
         return header;
     }
@@ -30,30 +27,23 @@ public abstract class Article implements Comparable<Article>{
         return paragraphs;
     }
 
-    public boolean paragraphsContainsPart(String part){
-        return paragraphs.stream().anyMatch(p->p.contains(part));
-    }
+    public abstract int getImportance();
 
     @Override
-    public int compareTo(Article o){
-        return o.getImportance()-getImportance();
+    public int compareTo(Article o) {
+        return o.getImportance() - getImportance();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Article article = (Article) o;
-
-        if (!Objects.equals(header, article.header)) return false;
-        return Objects.equals(paragraphs, article.paragraphs);
+        return header.equals(article.header) && paragraphs.equals(article.paragraphs);
     }
 
     @Override
     public int hashCode() {
-        int result = header != null ? header.hashCode() : 0;
-        result = 31 * result + (paragraphs != null ? paragraphs.hashCode() : 0);
-        return result;
+        return Objects.hash(header, paragraphs);
     }
 }

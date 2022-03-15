@@ -1,7 +1,5 @@
 package message;
 
-import java.util.Optional;
-
 public class MessageService {
 
     private UserRepository userRepository;
@@ -12,24 +10,19 @@ public class MessageService {
         this.messageRepository = messageRepository;
     }
 
-
     public void registerUser(String username) {
-        Optional<User> isTaken = userRepository.findUserByName(username);
-        if (!isTaken.isEmpty()) {
+        if (userRepository.findUserByName(username).isEmpty()) {
+            userRepository.insertUser(username);
+        } else {
             throw new IllegalArgumentException("Username is already taken: " + username);
-
         }
-        userRepository.insertUser(username);
     }
 
     public void sendMessage(User sender, User receiver, String message) {
-        Optional<User> actualSender = userRepository.findUserByName(sender.getUsername());
-        Optional<User> actualReceiver = userRepository.findUserByName(receiver.getUsername());
-
-        if (actualReceiver.isPresent() && actualSender.isPresent()) {
-            messageRepository.insertMessage(actualSender.get().getId(), actualReceiver.get().getId(), message);
-        } else {
-            throw new IllegalArgumentException("Sender or receiver not found!");
+        if (userRepository.findUserByName(sender.getUsername()).isPresent() && userRepository.findUserByName(receiver.getUsername()).isPresent()) {
+            long senderId = userRepository.findUserByName(sender.getUsername()).get().getId();
+            long receiverId = userRepository.findUserByName(receiver.getUsername()).get().getId();
+            messageRepository.sendMessage(senderId, receiverId, message);
         }
     }
 }

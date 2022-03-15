@@ -19,7 +19,7 @@ ellenőrizni a megoldásod. Ha nincs commitod az idő lejárta előtt, akkor saj
 
 Armstrong-számnak nevezünk egy n jegyű számot, ha minden számjegyét az n-edik hatványra emelve és összeadva az eredeti számot kapjuk.(<i>Forrás:Wikipedia</i>)
 Például: A 153, hossza 3. 1^3+5^3+3^3 = 1+125+27 = 153. (A ^ jel hatványt jelöl: 3^2 = három a másodikon)
-A `ArmstrongNumbers` osztályban írj egy `isArmstrongNumber(int number)` metódust, ami igaz értékkel tér vissza, ha egy szám Armstrong-szám!
+A `numbers.ArmstrongNumbers` osztályban írj egy `isArmstrongNumber(int number)` metódust, ami igaz értékkel tér vissza, ha egy szám Armstrong-szám!
 Negatív szám nem lehet Armstrong-szám, így ebben az esetben dobj kivételt!
 
 

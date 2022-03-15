@@ -1,5 +1,7 @@
 package newspaper;
 
+import java.util.Objects;
+
 public class Header {
 
     private String content;
@@ -10,26 +12,24 @@ public class Header {
         this.level = level;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
     public String getContent() {
         return content;
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Header header = (Header) o;
-
-        return content != null ? content.equals(header.content) : header.content == null;
+        return content.equals(header.content);
     }
 
     @Override
     public int hashCode() {
-        return content != null ? content.hashCode() : 0;
+        return Objects.hash(content);
     }
 }

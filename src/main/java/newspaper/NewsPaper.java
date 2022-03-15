@@ -1,6 +1,5 @@
 package newspaper;
 
-
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -14,24 +13,6 @@ public class NewsPaper {
         this.name = name;
     }
 
-    public void addArticle(Article article){
-        articles.add(article);
-    }
-
-    public List<Article> findArticlesByAuthor(String author){
-        return articles.stream()
-                .filter(article -> article.getAuthor().equals(author))
-                .toList();
-    }
-
-    public List<Article> findArticleByParagraphPart(String part){
-
-        return articles.stream()
-                .filter(a->a.paragraphsContainsPart(part))
-                .toList();
-    }
-
-
     public String getName() {
         return name;
     }
@@ -39,4 +20,18 @@ public class NewsPaper {
     public Set<Article> getArticles() {
         return articles;
     }
+
+    public void addArticle(Article article) {
+        articles.add(article);
+    }
+
+    public List<Article> findArticlesByAuthor(String author) {
+        return articles.stream().filter(article -> author.equals(article.getAuthor())).toList();
+    }
+
+    public List<Article> findArticleByParagraphPart(String part) {
+        return articles.stream().filter(article -> article.getParagraphs().stream().anyMatch(paragraph -> paragraph.contains(part))).toList();
+    }
+
+
 }

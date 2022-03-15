@@ -2,22 +2,17 @@ package newspaper;
 
 import java.util.List;
 
-public class YellowPressArticle extends Article {
-
-    private static final int MAX_HEADER_LEVEL = 5;
-    private static final int BASIC_IMPORTANCE = 1;
+public class YellowPressArticle extends Article{
 
     public YellowPressArticle(String author, Header header, List<String> paragraphs) {
         super(author, header, paragraphs);
-        if (header.getLevel() > MAX_HEADER_LEVEL) {
-            throw new IllegalArgumentException("Header size cannot be greater than "+MAX_HEADER_LEVEL+"!");
+        if (header.getLevel() > 5) {
+            throw new IllegalArgumentException("Header size cannot be greater than 5!");
         }
     }
 
     @Override
     public int getImportance() {
-        return BASIC_IMPORTANCE;
+        return 1;
     }
-
-
 }

@@ -2,19 +2,19 @@ package message;
 
 public class User {
 
-    private Long id;
+    private long id;
     private String username;
 
-    public User(Long id, String username) {
+    public User(String userName) {
+        this.username = userName;
+    }
+
+    public User(long id, String userName) {
         this.id = id;
-        this.username = username;
+        this.username = userName;
     }
 
-    public User(String username) {
-        this.username = username;
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
