@@ -23,6 +23,8 @@ public class MessageService {
             long senderId = userRepository.findUserByName(sender.getUsername()).get().getId();
             long receiverId = userRepository.findUserByName(receiver.getUsername()).get().getId();
             messageRepository.sendMessage(senderId, receiverId, message);
+        } else {
+            throw new IllegalArgumentException("User not found!");
         }
     }
 }
